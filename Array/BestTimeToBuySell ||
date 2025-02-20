@@ -1,0 +1,27 @@
+class Solution {
+public:
+    int maxProfit(vector<int>& prices) {
+    // buy at smaller and sell at larger value---
+    int i=0, n=prices.size()-1, profit=0, buy=0, sell=0;  
+
+    while(i<n){
+
+        while(i<n && prices[i]>=prices[i+1]){
+           // buy=prices[i+1]; 
+           i++; // jab tak samller element milta jaega index ++ hota jaega
+        }
+        buy=prices[i]; 
+
+        while(i<n && prices[i]<=prices[i+1]){
+            //sell=prices[i+1];
+            i++;
+        }
+        
+        sell=prices[i];
+        
+        profit+=sell-buy;
+    }
+      return profit;
+        
+    }
+};
