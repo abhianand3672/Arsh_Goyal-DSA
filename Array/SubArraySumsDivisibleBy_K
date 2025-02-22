@@ -1,0 +1,27 @@
+class Solution {
+public:
+    int subarraysDivByK(vector<int>& nums, int k) {
+    unordered_map<int,int>mp;
+    
+    int ans =0, presum=0, rem=0;
+    mp[rem]++; //maped 0
+    
+    //agar nums of j = 8 % k rem x hai aur nums of j = 5 % k bhi rem x to , nums[8]- nums[5] divisible by k hoga
+    
+    for(int i =0;i<nums.size();i++){
+        presum+=nums[i];
+        rem = presum%k;
+
+        if(rem <0)rem+=k;  // if rem negative add k; 
+
+        if(mp.find(rem)!=mp.end()){
+            ans+=mp[rem];
+        }
+
+        mp[rem]++;
+    }
+
+    return ans;
+
+    }
+};
