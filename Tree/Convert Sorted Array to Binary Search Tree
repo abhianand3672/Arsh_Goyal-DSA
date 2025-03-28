@@ -1,0 +1,18 @@
+class Solution {
+public:
+    TreeNode* makeTree(vector<int>& nums,int left,int right){
+        if(left>right)return nullptr;
+        int mid = left+ (right-left)/2;
+        
+        TreeNode* root= new TreeNode(nums[mid]);
+        root->left= makeTree(nums,left,mid-1); //don't write 0 in place of left 
+        root->right=makeTree(nums,mid+1,right); //don't write size-1 in place of right.Left and right will be differ for differ nodes.
+        return root;
+        
+
+    }
+    
+    TreeNode* sortedArrayToBST(vector<int>& nums) {
+       return makeTree(nums,0,nums.size()-1);     
+    }
+};
